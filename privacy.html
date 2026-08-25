@@ -8,6 +8,7 @@
   body { font-family: -apple-system, Helvetica, Arial, sans-serif; max-width: 720px; margin: 0 auto; padding: 32px 20px 80px; line-height: 1.55; color: #1c1c1e; background: #fff; }
   h1 { font-size: 28px; margin-bottom: 4px; }
   h2 { font-size: 19px; margin-top: 36px; }
+  h3 { font-size: 16px; margin-top: 24px; margin-bottom: 6px; }
   .updated { color: #6e6e73; font-size: 14px; margin-bottom: 32px; }
   a { color: #0066cc; }
   ul { padding-left: 22px; }
@@ -17,41 +18,72 @@
 <body>
 
 <h1>Política de Privacidad de Oscar</h1>
-<p class="updated">Última actualización: 17 de junio de 2026</p>
+<p class="updated">Última actualización: 25 de agosto de 2026</p>
 
 <p>Esta Política de Privacidad describe cómo <strong>Oscar</strong> ("la app", desarrollada por Lavaworks) maneja la información cuando la usás. Oscar es una app de apoyo a la formación y operación de pilotos privados (teoría, checklists, logbook de vuelos y navegación).</p>
 
-<h2>1. Qué información usa la app</h2>
+<p>La mayor parte de lo que hacés en Oscar no sale de tu teléfono. Hay tres funciones que sí necesitan salir, y están detalladas una por una en la sección 2.</p>
+
+<h2>1. Lo que queda solamente en tu dispositivo</h2>
 <ul>
-<li><strong>Ubicación (GPS):</strong> Oscar usa tu ubicación, solo mientras la app está en uso, para mostrarte tu posición en el mapa, calcular distancias a aeródromos y registrar la ruta de tus vuelos en el Logbook. Esta información se procesa y almacena <strong>únicamente en tu dispositivo</strong>; Oscar no la envía a servidores propios ni la comparte con terceros.</li>
+<li><strong>Ubicación (GPS):</strong> Oscar usa tu ubicación, solo mientras la app está en uso, para mostrarte tu posición en el mapa, calcular distancias a aeródromos y registrar la ruta de tus vuelos en el Logbook. <strong>Tu posición no se envía a ningún servidor</strong>, ni de Lavaworks ni de terceros.</li>
+<li><strong>Datos del Logbook:</strong> vuelos, tiempos de motor, rutas y notas que ingresás quedan guardados en tu dispositivo.</li>
+<li><strong>Fotos del Pasaporte de aeródromos:</strong> las fotos que agregás a una tarjeta de aeródromo se guardan en tu dispositivo. Salen de ahí solamente cuando vos usás el botón de compartir, y en ese caso van a donde vos elijas mandarlas.</li>
 <li><strong>Bluetooth:</strong> usado exclusivamente para conectar y controlar una cámara GoPro durante el vuelo, si elegís vincular una. No se recopila información a partir de esta conexión.</li>
-<li><strong>Fotos:</strong> si elegís agregar una foto de piloto o de un vuelo, esa foto se guarda localmente en tu dispositivo (y, si usás la función de compartir, se incluye en la imagen que vos decidís exportar). Oscar no sube fotos a ningún servidor.</li>
-<li><strong>Datos del Logbook:</strong> vuelos, tiempos de motor, rutas y notas que ingresás quedan guardados localmente en tu dispositivo.</li>
-<li><strong>Compras (suscripción):</strong> las compras se procesan enteramente por Apple a través de StoreKit. Oscar no recibe ni almacena datos de tu tarjeta o medio de pago — eso queda en manos de Apple conforme a su propia política de privacidad.</li>
-<li><strong>Sugerencias / contacto:</strong> si usás la función "Sugerencias" dentro de la app, el mensaje se envía por correo electrónico a <a href="mailto:matias@lavaworks.ar">matias@lavaworks.ar</a> usando tu propio cliente de mail. Lavaworks recibe ese mensaje solo si decidís enviarlo.</li>
+<li><strong>Compras (suscripción):</strong> las compras se procesan enteramente por Apple a través de StoreKit. Oscar no recibe ni almacena datos de tu tarjeta o medio de pago.</li>
 </ul>
 
-<h2>2. Qué NO hace Oscar</h2>
+<h2>2. Lo que sí sale de tu dispositivo</h2>
+
+<h3>a. Escanear una página de tu libro de vuelo en papel</h3>
+<p>Si usás la función de escaneo, la <strong>foto de esa página</strong> se envía a un servidor de Lavaworks, que a su vez la entrega a <strong>Google Gemini</strong> para transcribir los vuelos. Junto con la foto viaja un <strong>identificador de tu dispositivo</strong> (el <em>identifierForVendor</em> que provee iOS), que se usa para una sola cosa: llevar la cuenta de cuántas páginas escaneaste y aplicar el límite de uso.</p>
+<ul>
+<li>Ese identificador no dice quién sos: no es tu nombre, ni tu mail, ni tu número, y se reinicia solo si desinstalás todas las apps de Lavaworks de tu equipo.</li>
+<li><strong>El servidor de Lavaworks no guarda la foto.</strong> La recibe, la pasa al servicio de lectura, devuelve los vuelos y la descarta. Lo único que queda almacenado es el identificador con el contador de páginas usadas.</li>
+<li>El tratamiento que Google le da a la imagen se rige por los términos de la API de Gemini.</li>
+<li>Esta función es opcional y solo se activa cuando vos sacás o elegís una foto.</li>
+</ul>
+
+<h3>b. Vigilancia de aeródromos (avisos de NOTAM y clima)</h3>
+<p>Si activás la campanita en un aeródromo, Oscar envía a un servidor de Lavaworks, y este <strong>almacena</strong>: el <strong>token de notificaciones push</strong> de tu dispositivo, la <strong>lista de aeródromos que elegiste vigilar</strong> (con su código, nombre y coordenadas, que salen de la base de datos de la app, no de tu ubicación) y los <strong>umbrales de aviso</strong> que hayas configurado (viento, visibilidad, techo).</p>
+<p>Hace falta guardarlo para que el servidor pueda avisarte cuando cambie algo, incluso con la app cerrada. No incluye tu posición ni tus vuelos. Se borra apagando la campanita en cada aeródromo, o desinstalando la app (Apple invalida el token y el servidor lo elimina).</p>
+
+<h3>c. Consultas de información aeronáutica</h3>
+<p>Para mostrarte clima, NOTAM, cartas y la vista satelital de un aeródromo, Oscar consulta servicios externos enviando únicamente <strong>códigos de aeródromo o coordenadas de aeródromos</strong> — nunca datos tuyos.</p>
+
+<h2>3. Qué NO hace Oscar</h2>
 <ul>
 <li>No usa SDKs de analítica, publicidad ni rastreo de terceros.</li>
 <li>No crea cuentas de usuario ni requiere login.</li>
 <li>No vende ni comparte tu información con terceros con fines comerciales.</li>
-<li>No transmite tu ubicación, fotos ni datos de vuelo a servidores de Lavaworks.</li>
+<li>No envía tu ubicación, tus vuelos ni las fotos de tu Pasaporte a servidores de Lavaworks.</li>
+<li>No usa tus datos para entrenar modelos ni para publicidad.</li>
 </ul>
 
-<h2>3. Servicios de terceros que la app consulta</h2>
-<p>Para mostrarte información operativa (clima, NOTAMs, frecuencias, cartas), Oscar hace consultas de solo lectura a APIs públicas de aviación (por ejemplo AviationWeather.gov, OpenAIP, datos abiertos de aeródromos). Estas consultas no incluyen información personal tuya, solo parámetros como coordenadas o códigos de aeródromo.</p>
+<h2>4. Servicios de terceros</h2>
+<ul>
+<li><strong>Google Gemini</strong> — lee las fotos de las páginas del libro de vuelo, cuando usás esa función.</li>
+<li><strong>Apple</strong> — StoreKit para las suscripciones, APNs para las notificaciones, y MapKit para la vista satelital de los aeródromos.</li>
+<li><strong>AviationWeather.gov</strong> y <strong>OpenAIP</strong> — información meteorológica y de aeródromos.</li>
+<li><strong>ANAC (ais.anac.gob.ar)</strong> — NOTAM y cartas oficiales.</li>
+<li><strong>Render</strong> — proveedor donde corre el servidor de Lavaworks.</li>
+</ul>
+<p>Salvo el caso del escaneo descrito en 2.a, estas consultas no incluyen información personal tuya.</p>
 
-<h2>4. Retención y eliminación de datos</h2>
-<p>Como todos los datos se guardan localmente en tu dispositivo, podés eliminarlos en cualquier momento borrando los vuelos/fotos desde la app, o desinstalando la app (lo que elimina todos sus datos del dispositivo).</p>
+<h2>5. Retención y eliminación de datos</h2>
+<ul>
+<li><strong>En tu dispositivo:</strong> borrás los vuelos y las fotos desde la app, o desinstalás la app, lo que elimina todos sus datos del equipo.</li>
+<li><strong>Vigilancia:</strong> apagá la campanita en cada aeródromo, o desinstalá la app.</li>
+<li><strong>Contador de escaneos:</strong> el identificador de dispositivo y su contador quedan guardados. Si desinstalás todas las apps de Lavaworks, iOS descarta ese identificador y la fila deja de corresponder a ningún equipo. También podés pedir que la borremos escribiendo a <a href="mailto:matias@lavaworks.ar">matias@lavaworks.ar</a> desde la app, indicando el identificador que se muestra en la pantalla de escaneo.</li>
+</ul>
 
-<h2>5. Menores de edad</h2>
+<h2>6. Menores de edad</h2>
 <p>Oscar no está dirigida a niños y no recolecta intencionalmente información de menores de 13 años.</p>
 
-<h2>6. Cambios a esta política</h2>
+<h2>7. Cambios a esta política</h2>
 <p>Si actualizamos esta política, publicaremos la nueva versión en esta misma dirección con la fecha de actualización correspondiente.</p>
 
-<h2>7. Contacto</h2>
+<h2>8. Contacto</h2>
 <p>Para preguntas sobre esta política o tus datos, escribí a <a href="mailto:matias@lavaworks.ar">matias@lavaworks.ar</a>.</p>
 
 <footer>Lavaworks — Oscar App</footer>
